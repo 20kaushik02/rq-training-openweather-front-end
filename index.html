@@ -8,11 +8,35 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Yet another weather application" />
     <title>YAWA - Yet Another Weather Application</title>
+    <script src="js/assets/jquery-3.6.0.js"></script>
+    <script src="js/index.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
       <h1 class="root__h1">YAWA - Yet Another Weather Application</h1>
+      <div class="searchTypes">
+        <div class="searchTypes__type">
+          <h2 class="searchType__heading">Locate by location name</h3>
+          <input type="text" class="searchType__input searchType--text" placeholder="Location" id="locname_text"/>
+          <button type="submit" class="searchType__button" id="locname_button">
+            How's the weather?
+          </button>
+        </div>
+        <div class="searchTypes__type">
+          <h2 class="searchType__heading">Locate by location coordinates</h3>
+          <div class="searchType__numbers">
+            <input type="number" class="searchType__input searchType--number" placeholder="Latitude" id="lat_num"/>
+            <input type="number" class="searchType__input searchType--number" placeholder="Longitude" id="lon_num"/>
+          </div>
+          <button type="submit" class="searchType__button" id="coords_button">
+            How's the weather?
+          </button>
+        </div>
+      </div>
+      <div class="searchResults">
+        <h2 class="searchResults__heading"></h2>
+      </div>
     </div>
   </body>
 </html>
