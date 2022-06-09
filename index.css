@@ -1,8 +1,12 @@
 :root {
   --primary-color: rgb(2, 4, 43);
   --secondary-color: rgb(34, 122, 229);
-  --tertiary-color: rgb(240, 189, 96);
+  --tertiary-color: rgb(248, 190, 82);
+  --largest-font: 4rem;
+  --larger-font: 3rem;
+  --large-font: 2rem;
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -16,6 +20,7 @@ body {
     var(--secondary-color)
   );
   color: var(--tertiary-color);
+  text-shadow: 0 0 10px var(--primary-color);
 }
 
 code {
@@ -25,6 +30,10 @@ code {
 
 .root__h1 {
   text-align: center;
+  font-size: var(--largest-font);
+  padding-bottom: 1rem;
+  border-width: 0 0 2px 0;
+  border-bottom: solid var(--primary-color);
 }
 
 .searchTypes {
@@ -32,8 +41,7 @@ code {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  margin: auto;
+  padding: 0 2rem;
 }
 
 .searchTypes__type {
@@ -41,11 +49,13 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .searchType__heading {
   text-align: center;
+  font-size: var(--large-font);
 }
 
 .searchType__input,
@@ -65,6 +75,7 @@ code {
 
 .searchType__input::placeholder {
   color: var(--tertiary-color);
+  text-shadow: 0 0 10px var(--primary-color);
 }
 
 .searchType__input:hover {
@@ -76,7 +87,16 @@ code {
 }
 
 .searchType--number {
-  font-size: larger;
+  font-size: large;
+}
+
+.searchType--number::-webkit-inner-spin-button,
+.searchType--number::-webkit-outer-spin-button {
+  display: none;
+}
+
+.searchType--number {
+  -moz-appearance: textfield;
 }
 
 .searchType__button {
@@ -86,9 +106,10 @@ code {
   color: var(--tertiary-color);
   font-weight: bolder;
   font-size: large;
+  border-width: 0 0 2px 0;
   border-radius: 5px;
-  border-color: var(--primary-color);
-  outline: none;
+  border-color: var(--tertiary-color);
+  border-style: solid;
   transition: 0.2s all ease-in-out;
 }
 
@@ -101,6 +122,8 @@ code {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .searchResults {
@@ -108,6 +131,14 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 2rem;
+}
+
+.searchResults__heading {
+  text-align: center;
+  padding-bottom: 1rem;
+  border-width: 0 0 2px 0;
+  border-bottom: solid var(--primary-color);
 }
 
 .ringLoader {
@@ -124,7 +155,8 @@ code {
   margin: 8px;
   border-radius: 50%;
   border: 6px solid var(--tertiary-color);
-  border-color: var(--tertiary-color) transparent var(--tertiary-color) transparent;
+  border-color: var(--tertiary-color) transparent var(--tertiary-color)
+    transparent;
   animation: ringLoader 1.2s linear infinite;
 }
 
@@ -137,6 +169,34 @@ code {
   }
 }
 
+.searchResults__weatherSummary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding-bottom: 1rem;
+  border-width: 0 0 2px 0;
+  border-bottom: solid var(--primary-color);
+}
+
+.weatherSummary__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 1rem;
+}
+
+.weatherSummary__text {
+  text-transform: capitalize;
+}
+
+#weatherSummary__oneliner {
+  font-weight: bold;
+}
+
 /* Desktop only */
 @media only screen and (min-width: 1024px) {
 }
@@ -147,10 +207,22 @@ code {
 
 /* Mobile only (i think?) */
 @media only screen and (max-width: 767px) {
+  .root__h1 {
+    font-size: var(--larger-font);
+  }
   .searchTypes {
     flex-direction: column;
   }
   .searchType__numbers {
     flex-direction: column;
+  }
+  .coord_label {
+    display: none;
+  }
+  .searchResults__weatherSummary {
+    flex-direction: column;
+  }
+  .weatherSummary__col {
+    width: 100%;
   }
 }

@@ -1,8 +1,8 @@
-const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+const CUR_WEATHER_API = "https://api.openweathermap.org/data/2.5/weather";
 
 const getCurrentWeather = (lat, lon) => {
   return $.ajax({
-    url: `${API_URL}?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
+    url: `${CUR_WEATHER_API}?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric&mode=json&lang=en`,
     type: "GET",
     dataType: "json",
     cache: false,

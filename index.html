@@ -14,42 +14,60 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <h1 class="root__h1">YAWA - Yet Another Weather Application</h1>
+      <h1 class="root__h1">YAWA<br />Yet Another Weather Application</h1>
       <div class="searchTypes">
         <div class="searchTypes__type">
-          <h2 class="searchType__heading">Locate by location name</h3>
-          <input type="text" class="searchType__input searchType--text" placeholder="Location" id="locname_text"/>
+          <h2 class="searchType__heading">Locate by name</h2>
+          <input
+            type="text"
+            class="searchType__input searchType--text"
+            placeholder="Location"
+            id="locname_text"
+          />
           <button type="submit" class="searchType__button" id="locname_button">
             How's the weather?
           </button>
         </div>
         <div class="searchTypes__type">
-          <h2 class="searchType__heading">Locate by location coordinates</h3>
+          <h2 class="searchType__heading">Locate by coordinates</h2>
           <div class="searchType__numbers">
-            <input type="number" class="searchType__input searchType--number" placeholder="Latitude" id="lat_num"/>
-            <input type="number" class="searchType__input searchType--number" placeholder="Longitude" id="lon_num"/>
+            <input
+              type="number"
+              class="searchType__input searchType--number"
+              placeholder="Latitude"
+              id="lat_num"
+            />
+            <label for="lat_num" class="coord_label">°N</label>
+            <input
+              type="number"
+              class="searchType__input searchType--number"
+              placeholder="Longitude"
+              id="lon_num"
+            />
+            <label for="lon_num" class="coord_label">°E</label>
           </div>
           <button type="submit" class="searchType__button" id="coords_button">
             How's the weather?
           </button>
         </div>
       </div>
-      <div class="ringLoader"></div>
       <div class="searchResults">
-        <h2 class="searchResults__heading"></h2>
+        <h1 class="searchResults__heading"></h1>
+        <div class="ringLoader"></div>
         <div class="searchResults__weatherSummary">
-          <div class="weatherSummary__text">
-            <h3 class="weatherSummary__oneliner"></h3>
-            <p class="weatherSummary__temp"></p>
-            <p class="weatherSummary_feelslike"></p>
+          <div class="weatherSummary__col">
+            <h3 class="weatherSummary__text" id="weatherSummary__oneliner"></h3>
+            <p class="weatherSummary__text" id="weatherSummary__temp"></p>
+            <p class="weatherSummary__text" id="weatherSummary__feelslike"></p>
           </div>
-          <div class="weatherSummary__icon">
-            <img src="icons/unknown.png" alt="unknown" class="weatherSummary__img"/>
+          <div class="weatherSummary__col">
+            <img src="" alt="" class="weatherSummary__img" />
             <p class="weatherSummary__param"></p>
           </div>
         </div>
-        <div class="searchResults__weatherDetails">
-          
+        <div class="searchResults__errors">
+          <h2 class="errors__title"></h2>
+          <p class="errors__message"></p>
         </div>
       </div>
     </div>
