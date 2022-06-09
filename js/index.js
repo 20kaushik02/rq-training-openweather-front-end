@@ -1,9 +1,7 @@
 $(document).ready(function () {
   window.API_KEY = "f847023ac7fd05f740bd61dc050203fe";
 
-  $(".ringLoader").toggle(); // initially loader is off
-  hideWeather(); // initially hidden
-  $(".searchResults__errors").hide(); // initially hidden
+  hideAll();
 
   $.getScript("js/geocoding.js");
   $.getScript("js/weather.js");
@@ -18,7 +16,8 @@ const handleLocnameSubmit = () => {
     e.preventDefault();
     const locname = $("#locname_text").val();
     if (locname.length > 0) {
-      changeResultsHeading(locname);
+      setResultsHeading(locname);
+      displayResultsHeading();
       $(".ringLoader").toggle();
     } else {
       return;
@@ -34,10 +33,11 @@ const handleCoordsSubmit = () => {
     const lat = $("#lat_num").val();
     const lon = $("#lon_num").val();
     if (lat != "" && lon != "") {
-      changeResultsHeading(`${lat}°N ${lon}°E`);
+      setResultsHeading(`${lat}°N ${lon}°E`);
+      displayResultsHeading();
       $(".ringLoader").toggle();
       hideWeather();
-      $(".searchResults__errors").hide();
+      hideErrors();
     } else {
       return;
     }
@@ -48,10 +48,12 @@ const handleCoordsSubmit = () => {
       t1 = performance.now();
       setWeather(weather);
       displayWeather();
+      scrollToResult("#weatherSummary__oneliner");
     } catch (error) {
       t1 = performance.now();
       setErrors(error);
-      $(".searchResults__errors").show();
+      displayErrors();
+      scrollToResult(".errors__title");
       // console.error(error);
       return;
     } finally {
@@ -61,8 +63,16 @@ const handleCoordsSubmit = () => {
   });
 };
 
-const changeResultsHeading = (value) => {
+const setResultsHeading = (value) => {
   $(".searchResults__heading").text(`Weather at ${value}`);
+};
+
+const displayResultsHeading = () => {
+  $(".searchResults__heading").show();
+};
+
+const hideResultsHeading = () => {
+  $(".searchResults__heading").hide();
 };
 
 const setWeather = (data) => {
@@ -74,6 +84,19 @@ const setWeather = (data) => {
   $(".weatherSummary__img").attr("src", `icons/${data.weather[0].icon}.png`);
   $(".weatherSummary__img").attr("alt", data.weather[0].main);
   $(".weatherSummary__param").text(data.weather[0].main);
+
+  $("#weatherDetails__mintmp").text(
+    `Min. temperature: ${data.main.temp_min} °C`
+  );
+  $("#weatherDetails__maxtmp").text(
+    `Max. temperature: ${data.main.temp_max} °C`
+  );
+  $("#weatherDetails__pressr").text(
+    `Atmospheric pressure: ${data.main.pressure} hPa`
+  );
+  $("#weatherDetails__hmdity").text(`Humidity: ${data.main.humidity}%`);
+  $("#weatherDetails__vsblty").text(`Visibility: ${data.visibility} meters`);
+  $("#weatherDetails__clouds").text(`Cloudiness: ${data.clouds.all}%`);
 };
 
 const displayWeather = () => {
@@ -94,4 +117,28 @@ const setErrors = (error) => {
     $(".errors__message").text(`Please try again later!`);
     $(".errors__title").text(`Oops! Something went wrong.`);
   }
+};
+
+const displayErrors = () => {
+  $(".searchResults__errors").show();
+};
+
+const hideErrors = () => {
+  $(".searchResults__errors").hide();
+};
+
+const hideAll = () => {
+  $(".ringLoader").hide();
+  hideWeather();
+  hideErrors();
+  hideResultsHeading();
+};
+
+const scrollToResult = (result_start) => {
+  $("html, body").animate(
+    {
+      scrollTop: $(result_start).offset().top,
+    },
+    500
+  );
 };

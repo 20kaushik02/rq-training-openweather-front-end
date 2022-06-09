@@ -31,7 +31,8 @@ code {
 .root__h1 {
   text-align: center;
   font-size: var(--largest-font);
-  padding-bottom: 1rem;
+  padding: 1rem 0;
+  margin: 0;
   border-width: 0 0 2px 0;
   border-bottom: solid var(--primary-color);
 }
@@ -41,7 +42,9 @@ code {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
+  border-width: 0 0 2px 0;
+  border-bottom: solid var(--primary-color);
 }
 
 .searchTypes__type {
@@ -136,6 +139,7 @@ code {
 
 .searchResults__heading {
   text-align: center;
+  font-size: var(--larger-font);
   padding-bottom: 1rem;
   border-width: 0 0 2px 0;
   border-bottom: solid var(--primary-color);
@@ -186,15 +190,85 @@ code {
   justify-content: center;
   align-items: center;
   width: 40%;
+  height: 100%;
+  margin: auto;
   padding: 1rem;
 }
 
 .weatherSummary__text {
   text-transform: capitalize;
+  font-size: var(--large-font);
 }
 
 #weatherSummary__oneliner {
+  font-size: var(--larger-font);
   font-weight: bold;
+}
+
+.weatherSummary__img  {
+  animation: attention 3s ease-in-out infinite;
+}
+
+@keyframes attention {
+  0% {
+    transform: scale(1.2);
+  }
+  50%  {
+    transform: scale(1.0);
+  }
+  100%  {
+    transform: scale(1.2);
+  }
+}
+
+.searchResults__weatherDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding-bottom: 1rem;
+  border-width: 0 0 2px 0;
+  border-bottom: solid var(--primary-color);
+}
+
+.weatherDetails__heading {
+  text-align: center;
+  font-size: var(--larger-font);
+}
+
+.weatherDetails__details {
+  list-style-type: none;
+  padding: 3rem 0;
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  justify-content: space-evenly;
+  grid-column-gap: 2rem;
+  -webkit-column-gap: 2rem;
+  column-gap: 2rem;
+  grid-row-gap: 2rem;
+  row-gap: 2rem;
+}
+
+.weatherDetails__text {
+  text-align: center;
+  font-size: large;
+}
+
+.searchResults__errors  {
+  animation: attention 3s ease-in-out infinite;
+}
+
+.errors__title  {
+  font-size: var(--large-font);
+}
+.errors__message  {
+  font-size: large;
 }
 
 /* Desktop only */
