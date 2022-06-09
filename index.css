@@ -110,6 +110,33 @@ code {
   align-items: center;
 }
 
+.ringLoader {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.ringLoader::after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid var(--tertiary-color);
+  border-color: var(--tertiary-color) transparent var(--tertiary-color) transparent;
+  animation: ringLoader 1.2s linear infinite;
+}
+
+@keyframes ringLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Desktop only */
 @media only screen and (min-width: 1024px) {
 }
